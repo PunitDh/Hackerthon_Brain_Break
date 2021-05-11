@@ -11,6 +11,8 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.hosts << /[a-z0-9]+\.ngrok\.io/
+
   config.reload_classes_only_on_change = false
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Show full error reports.
