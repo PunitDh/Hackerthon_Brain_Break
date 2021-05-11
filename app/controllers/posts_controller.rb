@@ -31,6 +31,17 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id].to_i)
+        account_sid = 'AC171419d3605386d42ba0f90bf14c390d' 
+        auth_token = '8669f3b301bba35b8691f1b6feddee06' 
+        @client = Twilio::REST::Client.new(account_sid, auth_token) 
+         
+        message = @client.messages.create(         
+                                     to: '+61468757015' 
+                                   ) 
+         
+        puts message.sid
+
+
         # puts params[:body] += 1
         # @post.body = @post.body.to_i + 1
         @post.update(post_params)
