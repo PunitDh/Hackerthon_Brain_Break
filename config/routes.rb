@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/:id/edit", to: 'posts#edit', as: "edit"
   patch '/:id/edit', to: 'posts#update'
   delete '/:id', to: 'posts#destroy', as: "delete"
+  post "notifications/notify", to: "notifications#notify"
 end

@@ -19,6 +19,8 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
         @post.save
+        # message = "A post was just added."
+        # TwilioTextMessenger.new(message).call
         redirect_to root_path
     end
 

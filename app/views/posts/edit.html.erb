@@ -1,38 +1,42 @@
 <h1 class="jumbotron">Your Personal Choc Count 🍫 </h1>
 
-<table class="table">
+
 
 <%= form_with(model: @post, url: edit_path, method: "patch") do |form| %>
+<table class="table">
   <tr><td>
   <%= form.label :title, "Name", class: "form-label" %></td>
   <td>
   <%= form.text_field :title, class: "form-control" %></td>
-  </tr><tr><td>
+  </tr>
+  
+  <tr><td>
   <%= form.label :body, "Chocolates", class: "form-label" %></td>
   <td>
-  <%= form.number_field :body, in: 1..100, step: 1, id: "numchocolates", class: "form-control" %></td></tr>
+  <%= form.number_field :body, in: 1..100, step: 1, class: "form-control" %></td></tr>
 
   <tr><td>
-  <%= form.button "Add 1 chocolate 😃", id: "chocolateaddbutton", class: "btn btn-success" %>
-  <%= form.button "Remove 1 chocolate 😭", id: "chocolateremovebutton", class: "btn btn-danger" %>
-  </td><td>
-  <%= form.submit "Update", class: "btn btn-primary" %>
-  <%= link_to 'Show', root_path, class: "btn btn-warning" %>
-  <%= link_to 'Back', posts_path, class: "btn btn-danger" %></td></tr>
+  <button id="chocolateaddbutton" class="btn btn-success">Add 1 chocolate 😃</button>
+  <button id="chocolateremovebutton" class="btn btn-danger">Remove 1 chocolate 😭</button>
+  </td>
+  
+  <td>
+  <%= form.submit class: "btn btn-primary" %></td><td>
+  <%= link_to 'Show', show_path(@post), class: "btn btn-warning" %>
+  <%= link_to 'Back', root_path, class: "btn btn-danger" %></td></tr>
+  </table>
 <% end %>
 
 
-</table>
-<script>
-  const addchocolate = (event) => {
-    document.getElementById("numchocolates").value = parseInt(document.getElementById("numchocolates").value) + parseInt(1);
-    event.preventDefault();
-  }
 
-  const removechocolate = (event) => {
-    document.getElementById("numchocolates").value = parseInt(document.getElementById("numchocolates").value) - parseInt(1);
+<script>
+  document.getElementById("chocolateaddbutton").addEventListener("click",(event) => {
+    document.getElementById("post_body").value++;
     event.preventDefault();
-  }
-  document.getElementById("chocolateaddbutton").addEventListener("click",addchocolate);
-  document.getElementById("chocolateremovebutton").addEventListener("click",removechocolate);
+    });
+
+  document.getElementById("chocolateremovebutton").addEventListener("click",(event) => {
+    document.getElementById("post_body").value--;
+    event.preventDefault();
+    });
 </script>
