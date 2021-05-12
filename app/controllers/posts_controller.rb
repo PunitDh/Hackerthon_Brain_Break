@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 # before_action @post = Post.find(params[:id])
     before_action :authenticate_user!
+    skip_before_action :authenticate_user!, only: [:about]
     
     def index
         @posts = Post.all
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
 
     def edit
         @post = Post.find(params[:id].to_i)
-          render "posts/edit"
+        render "posts/edit"
     end
 
     def update
@@ -38,6 +39,10 @@ class PostsController < ApplicationController
         # @post.body = @post.body.to_i + 1
         @post.update(post_params)
         redirect_to root_path
+    end
+
+    def about
+        render "shared/about"
     end
 
     def destroy
