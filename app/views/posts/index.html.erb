@@ -7,6 +7,7 @@
 <thead>
 <th>Name</th>
 <th>Chocolates</th>
+<th colspan=3></th>
 </thead>
 <tbody>
 <% @posts.each do |post| %>
@@ -16,8 +17,8 @@
 
 
   <td><%= link_to 'View Profile 🍫', show_path(post), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Transform Profile 🍫', edit_path(post), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Execute Profile 🍫', delete_path(post), method: :delete, data: { confirm: 'Are you sure? There is NO TURNING BACK!' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Update Profile 🍫', edit_path(post), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Delete Profile 🍫', delete_path(post), method: :delete, data: { confirm: 'Are you sure? There is NO TURNING BACK!' }, class: 'btn btn-danger' %></td>
         </tr>
 <% end %>
 </tbody>
