@@ -32,13 +32,15 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id].to_i)
-        client = Twilio::REST::Client.new
-        # raise params[:post][:body].inspect
-        client.messages.create(from: "+17206053308", to: "+61468757015", body: "#{params[:post][:title]} now has #{params[:post][:body]} chocolates.")
+        # client = Twilio::REST::Client.new
+        # # raise params[:post][:body].inspect
+        # client.messages.create(from: "+17206053308", to: "+61468757015", body: "#{params[:post][:title]} now has #{params[:post][:body]} chocolates.")
         # puts params[:body] += 1
         # @post.body = @post.body.to_i + 1
-        @post.update(post_params)
-        redirect_to root_path
+        if @post.update(post_params)
+            flash[:notice] = "Chocolateer updated"
+            redirect_to root_path
+        end
     end
 
     def about
